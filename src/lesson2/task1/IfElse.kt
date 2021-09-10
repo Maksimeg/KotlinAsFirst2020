@@ -5,6 +5,7 @@ package lesson2.task1
 import lesson1.task1.discriminant
 import kotlin.math.max
 import kotlin.math.sqrt
+import kotlin.math.abs
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
 // Максимальное количество баллов = 6
@@ -68,7 +69,22 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    var str: String=""
+    str+=age.toString()+""
+    if(age>20&& age%10<=4 && age%10>1||age<=4 && age>1){
+        return age.toString()+" года"
+    }
+    else if(age<100&&age%10==1|| age==1){
+        return age.toString()+" год"
+    }
+    else if(age%10==0||age>4&&age<20||age%100>10&&age%100<20||age%10>4&&age%10<20){
+        return age.toString()+" лет"
+    }
+
+
+    return "gfgd"
+}
 
 /**
  * Простая (2 балла)
@@ -122,7 +138,53 @@ fun rookOrBishopThreatens(
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    var a1:Double=0.0
+    var b1:Double=0.0
+    var c1:Double=0.0
+
+    if(a>b && a>c){
+        a1=a
+        b1=b
+        c1=c
+    }
+    else if(b>a && b>c){
+        a1=b
+        b1=a
+        c1=c
+    }
+    else if(b==a && a==c){
+        a1=a
+        b1=b
+        c1=c
+    }
+    else if(c>a &&c>b){
+        a1=c
+        b1=a
+        c1=b
+    }
+    else if(a>b && a==c || a>c && a==b){
+        a1=a
+        b1=b
+        c1=c
+    }
+    else if(c>a && c==b){
+        a1=c
+        b1=b
+        c1=a
+    }
+    if(a1*a1<c1*c1+b1*b1){
+        return 0
+    }
+    else if(a1*a1==c1*c1+b1*b1){
+        return 1
+    }
+    else if(a<b+c && a>abs(b-c) && b<a+c && b>abs(a-c) && c<a+b &&c>abs(a-b)){
+        return 2
+    }
+
+    return -1
+}
 
 /**
  * Средняя (3 балла)
@@ -132,4 +194,25 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    if(d>=a && b>=c){
+        if(b==c || a==d){
+            return 0
+        }
+        else if(a>c &&d<b){
+            return d-a
+        }
+        else if(c>a && d>b){
+            return b-c
+        }
+        else if(a<c && d<b){
+            return d-c
+        }
+        else if(c<a && b<d){
+            return b-a
+        }
+    }
+        return -1
+
+}
+
