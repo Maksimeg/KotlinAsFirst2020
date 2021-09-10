@@ -75,7 +75,7 @@ fun ageDescription(age: Int): String {
     if(age>20&& age%10<=4 && age%10>1||age<=4 && age>1){
         return age.toString()+" года"
     }
-    else if(age<100&&age%10==1|| age==1){
+    else if(age<100&&age%10==1&&age!=11|| age==1){
         return age.toString()+" год"
     }
     else if(age%10==0||age>4&&age<20||age%100>10&&age%100<20||age%10>4&&age%10<20){
@@ -210,6 +210,9 @@ fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
         }
         else if(c<a && b<d){
             return b-a
+        }
+        else if (a==c&&d==b||a==d&&b==c){
+            return abs(b-c)
         }
     }
         return -1
