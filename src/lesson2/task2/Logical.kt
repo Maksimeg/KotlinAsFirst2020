@@ -18,7 +18,12 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean {
+    if(((number/1000)+(number/100%10))==((number%10)+(number%100/10))){
+        return true
+    }
+    return false
+}
 
 /**
  * Простая (2 балла)
@@ -36,7 +41,41 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Дан номер месяца (от 1 до 12 включительно) и год (положительный).
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
-fun daysInMonth(month: Int, year: Int): Int = TODO()
+fun daysInMonth(month: Int, year: Int): Int {
+    if ((year %4==0 && year%100!=0) ||(year%400==0)){
+        when(month){
+            1->return 31
+            2->return 29
+            3-> return 31
+            4-> return 30
+            5->return 31
+            6->return 30
+            7->return 31
+            8-> return 31
+            9-> return 30
+            10-> return 31
+            11-> return 30
+            12-> return 31
+        }
+    }
+    else{
+        when(month){
+            1->return 31
+            2->return 28
+            3-> return 31
+            4-> return 30
+            5->return 31
+            6->return 30
+            7->return 31
+            8-> return 31
+            9-> return 30
+            10-> return 31
+            11-> return 30
+            12-> return 31
+        }
+    }
+    return 0
+}
 
 /**
  * Простая (2 балла)
@@ -59,4 +98,9 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
+        if(((a<=r)&&(b<=s))||((a<=s)&&(b<=r)) or  ((a<=r)&&(c<=s))||((a<=s)&&(c<=r))  or ((c<=r)&&(b<=s))||((c<=s)&&(b<=r))  )   {
+return true
+        }
+return false
+}
