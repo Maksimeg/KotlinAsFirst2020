@@ -222,7 +222,7 @@ fun sqr(n:Int):Int{
     return n*n
 }
 fun squareSequenceDigit(n: Int): Int {
-    var numbers=Array<Int>(2000,init = {i:Int->0})
+    var numbers=Array<Int>(20000,init = {i:Int->0})
     numbers[0]=1
     numbers[1]=4
     var numberMass:Int=2
@@ -269,7 +269,7 @@ fun squareSequenceDigit(n: Int): Int {
  */
 
 fun fibSequenceDigit(n: Int): Int {
-    var numbers=Array<Int>(500,init = {i:Int->0})
+    var numbers=Array<Int>(20000,init = {i:Int->0})
     numbers[0]=1
     numbers[1]=1
     var numberMass:Int=2
