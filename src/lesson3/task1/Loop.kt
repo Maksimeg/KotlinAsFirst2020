@@ -83,11 +83,28 @@ fun digitNumber(n: Int): Int = TODO()
 
 
 fun fib(n: Int): Int {
+    var a: Int=2
+    var b: Int=1
+    var c: Int=1
+    var saveB=0
+    var count=4
+
     if (n==1|| n==2){
         return 1
     }
-    else{
-        return fib(n-1)+fib(n-2)
+    else if(n==3){
+        return 2
+    }
+    else {
+        while (count <= n) {
+            a = a + b
+            saveB = b
+            b = b + c
+            c = saveB
+            count += 1
+        }
+
+        return a
     }
 }
 
@@ -205,7 +222,7 @@ fun sqr(n:Int):Int{
     return n*n
 }
 fun squareSequenceDigit(n: Int): Int {
-    var numbers=Array<Int>(500,init = {i:Int->0})
+    var numbers=Array<Int>(2000,init = {i:Int->0})
     numbers[0]=1
     numbers[1]=4
     var numberMass:Int=2
