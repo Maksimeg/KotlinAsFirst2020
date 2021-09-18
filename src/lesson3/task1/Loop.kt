@@ -3,7 +3,7 @@
 package lesson3.task1
 
 import kotlin.math.sqrt
-
+import kotlin.math.pow
 // Урок 3: циклы
 // Максимальное количество баллов = 9
 // Рекомендуемое количество баллов = 7
@@ -83,19 +83,17 @@ fun digitNumber(n: Int): Int = TODO()
 
 
 fun fib(n: Int): Int {
-    var a: Int=2
-    var b: Int=1
-    var c: Int=1
-    var saveB=0
-    var count=4
+    var a: Int = 2
+    var b: Int = 1
+    var c: Int = 1
+    var saveB = 0
+    var count = 4
 
-    if (n==1|| n==2){
+    if (n == 1 || n == 2) {
         return 1
-    }
-    else if(n==3){
+    } else if (n == 3) {
         return 2
-    }
-    else {
+    } else {
         while (count <= n) {
             a = a + b
             saveB = b
@@ -213,48 +211,52 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Сложная (4 балла)
  *
  * Найти n-ю цифру последовательности из квадратов целых чисел:
- * 149162536496481100121144...
+ * 149 16 25 36 49 64 81 100 121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun sqr(n:Int):Int{
-    return n*n
+fun sqr(n: Int): Int {
+    return n * n
 }
+
 fun squareSequenceDigit(n: Int): Int {
-    var numbers=Array<Int>(45000,init = {i:Int->0})
-    numbers[0]=1
-    numbers[1]=4
-    var numberMass:Int=2
-    var fibNumber:Int
-    for(i in 3..n step 1){
-        fibNumber=sqr(i)
-        if(fibNumber>9){
-            var falseNumber=fibNumber
-            var countOfNumber=0
-
-            while(falseNumber>0){
-                countOfNumber+=1
-                falseNumber/=10
+    var realCount = 0
+    var count = 0
+    var endNumber=0
+    var RetN=0
+    var lenN=0
+    while (realCount < n) {
+        count+=1
+        var number: Int = sqr(count)
+        lenN=0
+        endNumber=number
+        if (number < 10) {
+            realCount += 1
+        } else {
+            while (number > 0) {
+                realCount += 1
+                lenN+=1
+                number /= 10
             }
-            var count:Int=countOfNumber
-            while(fibNumber>0){
-                numbers[numberMass+countOfNumber-1]=fibNumber%10
-                fibNumber/=10
-                //numberMass+=1
-                countOfNumber-=1
-            }
-            numberMass+=count
         }
-        else{
-            numbers[numberMass]=fibNumber
-            numberMass+=1
+        println(realCount)
+    }
+    if (realCount==n){
+        return endNumber%10
+    }
+    else{
+        for(i in 1..(realCount-n)){
+            endNumber=((endNumber/10.0.pow(realCount-n) )%10).toInt()
+            println("e"+endNumber)
         }
-
+        return endNumber
     }
 
 
-    return numbers[n-1]
+
+
+
 
 }
 
@@ -269,43 +271,43 @@ fun squareSequenceDigit(n: Int): Int {
  */
 
 fun fibSequenceDigit(n: Int): Int {
-    var numbers=Array<Int>(20000,init = {i:Int->0})
-    numbers[0]=1
-    numbers[1]=1
-    var numberMass:Int=2
-    var fibNumber:Int
-    for(i in 3..n step 1){
-        fibNumber=fib(i)
-        if(fibNumber>9){
-            var falseNumber=fibNumber
-            var countOfNumber=0
+    var numbers = Array<Int>(20000, init = { i: Int -> 0 })
+    numbers[0] = 1
+    numbers[1] = 1
+    var numberMass: Int = 2
+    var fibNumber: Int
+    for (i in 3..n step 1) {
+        fibNumber = fib(i)
+        if (fibNumber > 9) {
+            var falseNumber = fibNumber
+            var countOfNumber = 0
 
-            while(falseNumber>0){
-                countOfNumber+=1
-                falseNumber/=10
+            while (falseNumber > 0) {
+                countOfNumber += 1
+                falseNumber /= 10
             }
-            var count:Int=countOfNumber
-            while(fibNumber>0){
-                numbers[numberMass+countOfNumber-1]=fibNumber%10
-                fibNumber/=10
+            var count: Int = countOfNumber
+            while (fibNumber > 0) {
+                numbers[numberMass + countOfNumber - 1] = fibNumber % 10
+                fibNumber /= 10
                 //numberMass+=1
-                countOfNumber-=1
+                countOfNumber -= 1
             }
-            numberMass+=count
-        }
-        else{
-            numbers[numberMass]=fibNumber
-            numberMass+=1
+            numberMass += count
+        } else {
+            numbers[numberMass] = fibNumber
+            numberMass += 1
         }
 
     }
 
 
-    return numbers[n-1]
+    return numbers[n - 1]
 
 }
-fun main(args: Array<String>){
 
-    }
+fun main(args: Array<String>) {
+
+}
 
 
