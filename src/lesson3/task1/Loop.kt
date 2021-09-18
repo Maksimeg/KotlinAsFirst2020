@@ -80,7 +80,16 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+
+
+fun fib(n: Int): Int {
+    if (n==1|| n==2){
+        return 1
+    }
+    else{
+        return fib(n-1)+fib(n-2)
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -192,7 +201,45 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun sqr(n:Int):Int{
+    return n*n
+}
+fun squareSequenceDigit(n: Int): Int {
+    var numbers=Array<Int>(500,init = {i:Int->0})
+    numbers[0]=1
+    numbers[1]=4
+    var numberMass:Int=2
+    var fibNumber:Int
+    for(i in 3..n step 1){
+        fibNumber=sqr(i)
+        if(fibNumber>9){
+            var falseNumber=fibNumber
+            var countOfNumber=0
+
+            while(falseNumber>0){
+                countOfNumber+=1
+                falseNumber/=10
+            }
+            var count:Int=countOfNumber
+            while(fibNumber>0){
+                numbers[numberMass+countOfNumber-1]=fibNumber%10
+                fibNumber/=10
+                //numberMass+=1
+                countOfNumber-=1
+            }
+            numberMass+=count
+        }
+        else{
+            numbers[numberMass]=fibNumber
+            numberMass+=1
+        }
+
+    }
+
+
+    return numbers[n-1]
+
+}
 
 /**
  * Сложная (5 баллов)
@@ -203,4 +250,45 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+
+fun fibSequenceDigit(n: Int): Int {
+    var numbers=Array<Int>(500,init = {i:Int->0})
+    numbers[0]=1
+    numbers[1]=1
+    var numberMass:Int=2
+    var fibNumber:Int
+    for(i in 3..n step 1){
+        fibNumber=fib(i)
+        if(fibNumber>9){
+            var falseNumber=fibNumber
+            var countOfNumber=0
+
+            while(falseNumber>0){
+                countOfNumber+=1
+                falseNumber/=10
+            }
+            var count:Int=countOfNumber
+            while(fibNumber>0){
+                numbers[numberMass+countOfNumber-1]=fibNumber%10
+                fibNumber/=10
+                //numberMass+=1
+                countOfNumber-=1
+            }
+            numberMass+=count
+        }
+        else{
+            numbers[numberMass]=fibNumber
+            numberMass+=1
+        }
+
+    }
+
+
+    return numbers[n-1]
+
+}
+fun main(args: Array<String>){
+
+    }
+
+
