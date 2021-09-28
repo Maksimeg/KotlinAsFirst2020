@@ -221,19 +221,19 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun sqr(n: Long): Long {
+fun sqr(n: Int): Int {
     return n * n
 }
 
 //564356
-fun squareSequenceDigit(n: Int): Long {
+fun squareSequenceDigit(n: Int): Int {
     var realCount: Int = 0
-    var count: Long = 0
-    var endNumber: Long = 0
+    var count: Int = 0
     var lenN: Long = 0
+    var endNumber:Int=0
     while (realCount < n) {
         count += 1
-        var number: Long = sqr(count)
+        var number: Int = sqr(count)
         lenN = 0
         endNumber = number
         if (number < 10) {
@@ -252,7 +252,7 @@ fun squareSequenceDigit(n: Int): Long {
         return endNumber % 10
     } else {
         //for(i in 1..(realCount-n)){
-        endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toLong()
+        endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toInt()
         // println("e"+endNumber)
         //}
         return endNumber
