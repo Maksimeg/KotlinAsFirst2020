@@ -9,6 +9,9 @@ import kotlin.math.pow
 // Рекомендуемое количество баллов = 7
 // Вместе с предыдущими уроками = 16/21
 
+fun main() {
+    println(squareSequenceDigit(5898))
+}
 /**
  * Пример
  *
@@ -219,7 +222,7 @@ fun cos(x: Double, eps: Double): Double = TODO()
 fun sqr(n: Long): Long {
     return n * n
 }
-
+//564356
 fun squareSequenceDigit(n: Int): Long {
     var realCount:Int = 0
     var count:Long = 0
@@ -239,15 +242,16 @@ fun squareSequenceDigit(n: Int): Long {
                 number /= 10
             }
         }
-        println(realCount)
+        //println(realCount)
     }
+    println(realCount)
     if (realCount==n){
         return endNumber%10
     }
     else{
         //for(i in 1..(realCount-n)){
             endNumber=((endNumber/10.0.pow(realCount-n) )%10).toLong()
-            println("e"+endNumber)
+           // println("e"+endNumber)
         //}
         return endNumber
     }
@@ -305,8 +309,5 @@ fun fibSequenceDigit(n: Int): Int {
 
 }
 
-fun main(args: Array<String>) {
-
-}
 
 
