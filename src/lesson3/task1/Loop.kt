@@ -4,6 +4,7 @@ package lesson3.task1
 
 import kotlin.math.sqrt
 import kotlin.math.pow
+
 // Урок 3: циклы
 // Максимальное количество баллов = 9
 // Рекомендуемое количество баллов = 7
@@ -12,6 +13,7 @@ import kotlin.math.pow
 fun main() {
     println(squareSequenceDigit(5898))
 }
+
 /**
  * Пример
  *
@@ -222,43 +224,39 @@ fun cos(x: Double, eps: Double): Double = TODO()
 fun sqr(n: Long): Long {
     return n * n
 }
+
 //564356
 fun squareSequenceDigit(n: Int): Long {
-    var realCount:Int = 0
-    var count:Long = 0
-    var endNumber:Long=0
-    var lenN:Long=0
+    var realCount: Int = 0
+    var count: Long = 0
+    var endNumber: Long = 0
+    var lenN: Long = 0
     while (realCount < n) {
-        count+=1
+        count += 1
         var number: Long = sqr(count)
-        lenN=0
-        endNumber=number
+        lenN = 0
+        endNumber = number
         if (number < 10) {
             realCount += 1
         } else {
             while (number > 0) {
                 realCount += 1
-                lenN+=1
+                lenN += 1
                 number /= 10
             }
         }
         //println(realCount)
     }
-    println(realCount)
-    if (realCount==n){
-        return endNumber%10
-    }
-    else{
+    //println(realCount)
+    if (realCount == n) {
+        return endNumber % 10
+    } else {
         //for(i in 1..(realCount-n)){
-            endNumber=((endNumber/10.0.pow(realCount-n) )%10).toLong()
-           // println("e"+endNumber)
+        endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toLong()
+        // println("e"+endNumber)
         //}
         return endNumber
     }
-
-
-
-
 
 
 }
