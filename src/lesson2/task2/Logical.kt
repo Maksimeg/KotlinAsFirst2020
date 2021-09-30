@@ -3,6 +3,8 @@
 package lesson2.task2
 
 import lesson1.task1.sqr
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Пример
@@ -19,10 +21,7 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
 fun isNumberHappy(number: Int): Boolean {
-    if(((number/1000)+(number/100%10))==((number%10)+(number%100/10))){
-        return true
-    }
-    return false
+    return (((number / 1000) + (number / 100 % 10)) == ((number % 10) + (number % 100 / 10)))
 }
 
 /**
@@ -42,39 +41,15 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean = TODO()
  * Вернуть число дней в этом месяце этого года по григорианскому календарю.
  */
 fun daysInMonth(month: Int, year: Int): Int {
-    if ((year %4==0 && year%100!=0) ||(year%400==0)){
-        when(month){
-            1->return 31
-            2->return 29
-            3-> return 31
-            4-> return 30
-            5->return 31
-            6->return 30
-            7->return 31
-            8-> return 31
-            9-> return 30
-            10-> return 31
-            11-> return 30
-            12-> return 31
-        }
+    if (month == 2) {
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return 29
+        } else
+            return 28
+    } else {
+        return 28 + (month + month / 8) % 2 + 2 % month + 1 / month * 2
     }
-    else{
-        when(month){
-            1->return 31
-            2->return 28
-            3-> return 31
-            4-> return 30
-            5->return 31
-            6->return 30
-            7->return 31
-            8-> return 31
-            9-> return 30
-            10-> return 31
-            11-> return 30
-            12-> return 31
-        }
-    }
-    return 0
+
 }
 
 /**
@@ -99,8 +74,8 @@ fun circleInside(
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-        if(((a<=r)&&(b<=s))||((a<=s)&&(b<=r)) or  ((a<=r)&&(c<=s))||((a<=s)&&(c<=r))  or ((c<=r)&&(b<=s))||((c<=s)&&(b<=r))  )   {
-return true
-        }
-return false
+    val maxN = max(a, max(b, c))
+    val minN = min(a, min(b, c))
+    val avgN = a + b + c - maxN - minN
+    return ((minN <= r) && (avgN <= s) || (minN <= s) && (avgN <= r))
 }

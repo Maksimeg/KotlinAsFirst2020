@@ -88,9 +88,9 @@ fun digitNumber(n: Int): Int = TODO()
 
 
 fun fib(n: Int): Int {
-    var a: Int = 2
-    var b: Int = 1
-    var c: Int = 1
+    var a = 2
+    var b = 1
+    var c = 1
     var saveB = 0
     var count = 4
 
@@ -227,10 +227,10 @@ fun sqr(n: Int): Int {
 
 //564356
 fun squareSequenceDigit(n: Int): Int {
-    var realCount: Int = 0
-    var count: Int = 0
-    var lenN: Long = 0
-    var endNumber:Int=0
+    var realCount = 0
+    var count= 0
+    var lenN = 0
+    var endNumber = 0
     while (realCount < n) {
         count += 1
         var number: Int = sqr(count)
@@ -245,16 +245,11 @@ fun squareSequenceDigit(n: Int): Int {
                 number /= 10
             }
         }
-        //println(realCount)
     }
-    //println(realCount)
     if (realCount == n) {
         return endNumber % 10
     } else {
-        //for(i in 1..(realCount-n)){
         endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toInt()
-        // println("e"+endNumber)
-        //}
         return endNumber
     }
 
@@ -275,7 +270,7 @@ fun fibSequenceDigit(n: Int): Int {
     var numbers = Array<Int>(20000, init = { i: Int -> 0 })
     numbers[0] = 1
     numbers[1] = 1
-    var numberMass: Int = 2
+    var numberMass = 2
     var fibNumber: Int
     for (i in 3..n step 1) {
         fibNumber = fib(i)
@@ -291,7 +286,6 @@ fun fibSequenceDigit(n: Int): Int {
             while (fibNumber > 0) {
                 numbers[numberMass + countOfNumber - 1] = fibNumber % 10
                 fibNumber /= 10
-                //numberMass+=1
                 countOfNumber -= 1
             }
             numberMass += count
@@ -301,8 +295,6 @@ fun fibSequenceDigit(n: Int): Int {
         }
 
     }
-
-
     return numbers[n - 1]
 
 }

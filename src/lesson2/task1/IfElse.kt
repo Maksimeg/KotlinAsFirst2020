@@ -6,6 +6,7 @@ import lesson1.task1.discriminant
 import kotlin.math.max
 import kotlin.math.sqrt
 import kotlin.math.abs
+import kotlin.math.min
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
 // Максимальное количество баллов = 6
@@ -70,16 +71,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String {
-    var str: String=""
-    str+=age.toString()+""
-    if(age>20&& age%10<=4 && age%10>1||age<=4 && age>1){
-        return age.toString()+" года"
-    }
-    else if(age<100&&age%10==1&&age!=11|| age==1){
-        return age.toString()+" год"
-    }
-    else if(age%10==0||age>4&&age<20||age%100>10&&age%100<20||age%10>4&&age%10<20){
-        return age.toString()+" лет"
+    var str = ""
+    str += age.toString() + ""
+    if (age > 20 && age % 10 <= 4 && age % 10 > 1 || age <= 4 && age > 1) {
+        return age.toString() + " года"
+    } else if (age < 100 && age % 10 == 1 && age != 11 || age == 1) {
+        return age.toString() + " год"
+    } else if (age % 10 == 0 || age > 4 && age < 20 || age % 100 > 10 && age % 100 < 20 || age % 10 > 4 && age % 10 < 20) {
+        return age.toString() + " лет"
     }
 
 
@@ -139,47 +138,17 @@ fun rookOrBishopThreatens(
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    var a1:Double=0.0
-    var b1:Double=0.0
-    var c1:Double=0.0
+    val maxN = max(a, max(b, c))
+    val minN = min(a, min(b, c))
+    val avgN = a + b + c - minN - maxN
 
-    if(a>b && a>c){
-        a1=a
-        b1=b
-        c1=c
-    }
-    else if(b>a && b>c){
-        a1=b
-        b1=a
-        c1=c
-    }
-    else if(b==a && a==c){
-        a1=a
-        b1=b
-        c1=c
-    }
-    else if(c>a &&c>b){
-        a1=c
-        b1=a
-        c1=b
-    }
-    else if(a>b && a==c || a>c && a==b){
-        a1=a
-        b1=b
-        c1=c
-    }
-    else if(c>a && c==b){
-        a1=c
-        b1=b
-        c1=a
-    }
-    if(a1*a1<c1*c1+b1*b1){
+    if (maxN * maxN < minN * minN + avgN * avgN) {
         return 0
-    }
-    else if(a1*a1==c1*c1+b1*b1){
+    } else if (maxN * maxN == minN * minN + avgN * avgN) {
         return 1
-    }
-    else if(a<b+c && a>abs(b-c) && b<a+c && b>abs(a-c) && c<a+b &&c>abs(a-b)){
+    } else if (maxN < avgN + minN && maxN > abs(avgN - minN) && avgN < maxN + minN && avgN > abs(maxN - minN) &&
+        minN < maxN + avgN && minN > abs(maxN - avgN)
+    ) {
         return 2
     }
 
@@ -195,39 +164,12 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    if(d>=a && b>=c){
-        if(b==c || a==d){
-            return 0
-        }
-        else if(a>c &&d<b){
-            return d-a
-        }
-        else if(c>a && d>b){
-            return b-c
-        }
-        else if(a<c && d<b){
-            return d-c
-        }
-        else if(c<a && b<d){
-            return b-a
-        }
-        else if (a==c&&d==b||a==d&&b==c){
-            return abs(b-c)
-        }
-        else if(a==c && b<d){
-            return b-a
-        }
-        else if(b==d&& a>c){
-            return b-a
-        }
-        else if(b==d&& a<c){
-            return b-c
-        }
-        else if(a==c&& b>d){
-            return d-a
-        }
-    }
+    val lenOfSize=min(d,b)-max(a,c)
+    if (lenOfSize>=0){
+        return lenOfSize
+    } else{
         return -1
+    }
 
 }
 

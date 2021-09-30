@@ -74,7 +74,10 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*3600+minutes*60
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = (sagenes*213.36+arshins*71.12+vershoks*4.445)/100
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double{
+    return (sagenes*48+arshins*16+vershoks)*4.445/100
+    //return (sagenes*213.36+arshins*71.12+vershoks*4.445)/100
+}
 
 /**
  * Тривиальная (1 балл)
@@ -82,7 +85,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = (sagenes
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double =  (deg+min/60+sec/3600)*3.14/180
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double = (deg+min.toDouble()/60+sec.toDouble()/3600)*PI/180
 
 /**
  * Тривиальная (1 балл)
@@ -109,7 +112,9 @@ fun thirdDigit(number: Int): Int = (number%1000)/100
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = (hoursArrive-hoursDepart)*60+(minutesArrive-minutesDepart)
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int{
+    return (hoursArrive-hoursDepart)*60+(minutesArrive-minutesDepart)
+}
 
 /**
  * Простая (2 балла)
