@@ -70,20 +70,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String {
-    var str = ""
-    str += age.toString() + ""
-    if (age > 20 && age % 10 <= 4 && age % 10 > 1 || age <= 4 && age > 1) {
-        return age.toString() + " года"
-    } else if (age < 100 && age % 10 == 1 && age != 11 || age == 1) {
-        return age.toString() + " год"
-    } else if (age % 10 == 0 || age > 4 && age < 20 || age % 100 > 10 && age % 100 < 20 || age % 10 > 4 && age % 10 < 20) {
-        return age.toString() + " лет"
+fun ageDescription(age: Int): String =
+    when {
+        age % 10 == 1 && age % 100 != 11 -> age.toString() + " год"
+        age % 10 in 2..4 && age > 20 -> age.toString() + " года"
+        age % 100 in 11..19 || age % 100 !in 2..4 -> age.toString() + " лет"
+        else -> age.toString() + " года"
     }
 
-
-    return "gfgd"
-}
 
 /**
  * Простая (2 балла)
@@ -138,21 +132,18 @@ fun rookOrBishopThreatens(
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val maxN = max(a, max(b, c))
-    val minN = min(a, min(b, c))
+    val maxN = maxOf(a, b, c)
+    val minN = minOf(a, b, c)
     val avgN = a + b + c - minN - maxN
 
-    if (maxN * maxN < minN * minN + avgN * avgN) {
-        return 0
-    } else if (maxN * maxN == minN * minN + avgN * avgN) {
-        return 1
-    } else if (maxN < avgN + minN && maxN > abs(avgN - minN) && avgN < maxN + minN && avgN > abs(maxN - minN) &&
-        minN < maxN + avgN && minN > abs(maxN - avgN)
-    ) {
-        return 2
-    }
+    when {
+        maxN * maxN < minN * minN + avgN * avgN -> return 0
+        maxN * maxN == minN * minN + avgN * avgN -> return 1
+        maxN < avgN + minN && maxN > avgN - minN && avgN < maxN + minN && avgN > maxN - minN &&
+                minN < maxN + avgN && minN > maxN - avgN -> return 2
+        else -> return -1
 
-    return -1
+    }
 }
 
 /**
@@ -164,10 +155,10 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Если пересечения нет, вернуть -1.
  */
 fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    val lenOfSize=min(d,b)-max(a,c)
-    if (lenOfSize>=0){
+    val lenOfSize = min(d, b) - max(a, c)
+    if (lenOfSize >= 0) {
         return lenOfSize
-    } else{
+    } else {
         return -1
     }
 
