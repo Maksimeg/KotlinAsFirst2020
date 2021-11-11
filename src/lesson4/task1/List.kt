@@ -376,7 +376,7 @@ fun russian(n: Int): String {
         2 -> "две "
         else -> ThirdC[thousandsCount % 10]
     }) + (if (thousandsCount != 0) if (thousandsCount % 100 in 5..20) "тысяч " else when (thousandsCount % 10) {
-        1 -> "тасяча "
+        1 -> "тысяча "
         2, 3, 4 -> "тысячи "
         else -> "тысяч "
     } else "") + firstC[hundredsCount / 100] + (if (hundredsCount % 100 / 10 == 1 && hundredsCount % 100 != 10)
