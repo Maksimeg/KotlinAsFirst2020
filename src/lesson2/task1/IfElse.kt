@@ -72,10 +72,11 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  */
 fun ageDescription(age: Int): String =
     when {
-        age % 10 == 1 && age % 100 != 11 -> age.toString() + " год"
-        age % 10 in 2..4 && age > 20 && age < 100 -> age.toString() + " года"
-        age % 100 in 11..19 || age % 100 !in 2..4 -> age.toString() + " лет"
-        else -> age.toString() + " года"
+        age % 10 == 1 && age % 100 != 11 -> "$age год"
+        age % 10 == 4 && age % 100 != 14 || age % 10 == 3 && age % 100 != 13 ||
+                age % 10 == 2 && age % 100 != 12 -> "$age года"
+        else -> "$age лет"
+
     }
 
 
@@ -136,14 +137,13 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
     val minN = minOf(a, b, c)
     val avgN = a + b + c - minN - maxN
 
-    when {
+    return if (maxN >= minN + avgN) -1 else when {
         maxN * maxN < minN * minN + avgN * avgN -> return 0
         maxN * maxN == minN * minN + avgN * avgN -> return 1
-        maxN < avgN + minN && maxN > avgN - minN && avgN < maxN + minN && avgN > maxN - minN &&
-                minN < maxN + avgN && minN > maxN - avgN -> return 2
-        else -> return -1
-
+        else -> 2
     }
+
+
 }
 
 /**

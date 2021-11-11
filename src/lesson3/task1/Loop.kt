@@ -5,6 +5,7 @@ package lesson3.task1
 import kotlin.math.sqrt
 import kotlin.math.pow
 
+
 // Урок 3: циклы
 // Максимальное количество баллов = 9
 // Рекомендуемое количество баллов = 7
@@ -221,18 +222,16 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun sqr(n: Int): Int {
-    return n * n
-}
+
 
 //564356
 fun squareSequenceDigit(n: Int): Int {
     var realCount = 0
-    var count= 0
+    var count = 0
     var endNumber = 0
     while (realCount < n) {
         count += 1
-        var number = sqr(count)
+        var number = count * count
         endNumber = number
         if (number < 10) {
             realCount += 1
@@ -243,14 +242,20 @@ fun squareSequenceDigit(n: Int): Int {
             }
         }
     }
-    if (realCount == n) {
-        return endNumber % 10
+    return EndCount(realCount, n, endNumber)
+
+
+}
+
+private fun EndCount(realCount: Int, n: Int, endNumber: Int): Int {
+    var endNumber1 = endNumber
+    return if (realCount == n) {
+        endNumber1 % 10
     } else {
-        endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toInt()
-        return endNumber
+        endNumber1 = ((endNumber1 / 10.0.pow(realCount - n)) % 10).toInt()
+        endNumber1
+
     }
-
-
 }
 
 /**
@@ -265,7 +270,7 @@ fun squareSequenceDigit(n: Int): Int {
 
 fun fibSequenceDigit(n: Int): Int {
     var realCount = 0
-    var count= 0
+    var count = 0
     var endNumber = 0
     while (realCount < n) {
         count += 1
@@ -280,12 +285,7 @@ fun fibSequenceDigit(n: Int): Int {
             }
         }
     }
-    if (realCount == n) {
-        return endNumber % 10
-    } else {
-        endNumber = ((endNumber / 10.0.pow(realCount - n)) % 10).toInt()
-        return endNumber
-    }
+    return EndCount(realCount, n, endNumber)
 
 }
 
