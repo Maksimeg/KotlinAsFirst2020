@@ -342,7 +342,7 @@ fun russian(n: Int): String {
     )
     val SecondCDes = listOf<String>(
         "",
-        "одинадцать ",
+        "одиннадцать ",
         "двенадцать ",
         "тринадцать ",
         "четырнадцать ",
