@@ -2,6 +2,9 @@
 
 package lesson5.task1
 
+import kotlin.math.max
+import kotlin.math.min
+
 // Урок 5: ассоциативные массивы и множества
 // Максимальное количество баллов = 14
 // Рекомендуемое количество баллов = 9
@@ -277,7 +280,16 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+    for ((indexF, elementF) in list.withIndex()) {
+        for ((indexS, elementS) in list.withIndex()) {
+            if (indexF != indexS && elementF + elementS == number) {
+                return Pair(min(indexS, indexF), max(indexF, indexS))
+            }
+        }
+    }
+    return Pair(-1, -1)
+}
 
 /**
  * Очень сложная (8 баллов)
@@ -300,4 +312,28 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
  *     450
  *   ) -> emptySet()
  */
-fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> = TODO()
+fun main() {
+    bagPacking(mapOf("BOOK" to (50 to 200), "SLEEK" to (20 to 20)), 50)
+}
+
+fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> {
+    val ssss = setOf("fgff")
+    val itemBackpack = mutableMapOf(
+        "" to (0 to 0)
+    )
+    val n = treasures.size
+
+    for ((name, param) in treasures) {
+        for (w in 1..capacity) {
+            if (param.first <= w) {
+
+            }
+        }
+    }
+
+
+
+
+
+    return ssss
+}
