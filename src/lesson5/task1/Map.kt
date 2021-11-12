@@ -2,6 +2,7 @@
 
 package lesson5.task1
 
+import javax.print.attribute.SetOfIntegerSyntax
 import kotlin.math.max
 import kotlin.math.min
 
@@ -313,27 +314,44 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
  *   ) -> emptySet()
  */
 fun main() {
-    bagPacking(mapOf("BOOK" to (50 to 200), "SLEEK" to (20 to 20)), 50)
+   // bagPacking(mapOf("BOOK" to (4 to 200), "SLEEK" to (2 to 20), "argo" to (1 to 100)), 5)
+    bagPacking(mapOf("BOOK" to (4 to 200), "SLEEK" to (2 to 20), "argo" to (2 to 100)), 1)
 }
 
 fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> {
-    val ssss = setOf("fgff")
-    val itemBackpack = mutableMapOf(
-        "" to (0 to 0)
-    )
     val n = treasures.size
+    val backpack: Array<IntArray> = Array(n) { IntArray(capacity + 1) { 0 } }
+    val str: Array<Array<String>> = Array(n, { Array(capacity + 1, { " " }) })
+    val name = treasures.keys.toMutableList()
+    val param = treasures.values.toMutableList()
+    if (treasures.isEmpty() || n == 0) return setOf()
 
-    for ((name, param) in treasures) {
-        for (w in 1..capacity) {
-            if (param.first <= w) {
-
+    for (i in 0..n - 1) {
+        for (s in 0..capacity) {
+            if (i == 0) {
+                if (s >= param[i].first) {
+                    backpack[i][s] = param[i].second
+                    str[i][s] = name[0]
+                }
+                continue
+            }
+            backpack[i][s] = backpack[i - 1][s]
+            str[i][s] = str[i - 1][s]
+            if (s >= param[i].first) {
+                //backpack[i][s] = max(backpack[i][s], backpack[i - 1][s - param[i].first] + param[i].second)
+                if (backpack[i - 1][s - param[i].first] + param[i].second > backpack[i][s]) {
+                    str[i][s] = str[i - 1][s - param[i].first] + " " + name[i]
+                }
             }
         }
     }
 
-
-
-
-
-    return ssss
+     //println(str[n-1][capacity])
+    val re = mutableSetOf<String>()
+    re += str[n - 1][capacity].split(" ")
+    //re.plus("ddas")
+    //println(re)
+    //if(re.isEmpty()) println("ff")
+    //if(str[n-1][capacity].isEmpty()) println("ff")
+    return re
 }
