@@ -326,9 +326,9 @@ fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<Strin
     val param = treasures.values.toMutableList()
     if (treasures.isEmpty() || n == 0) return setOf()
     for(i in 0..n-1){
-        if (capacity<param[i].first) return setOf()
+        if (capacity>param[i].first) break
         else{
-            break
+            return setOf()
         }
     }
 
