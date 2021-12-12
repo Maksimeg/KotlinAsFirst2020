@@ -89,8 +89,9 @@ fun main() {
 
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
     val inputFile = File(inputName)
+    val newListSubstrings=substrings.toSet()
     val map = mutableMapOf<String, Int>()
-    for (str in substrings) map[str] = 0
+    for (str in newListSubstrings) map[str] = 0
     for (line in inputFile.readLines()) {
         for (str in substrings) {
             var searchIndex = 0
