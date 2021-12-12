@@ -176,7 +176,23 @@ fun firstDuplicateIndex(str: String): Int {
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть больше нуля либо равны нулю.
  */
-fun mostExpensive(description: String): String = TODO()
+fun main() {
+    mostExpensive("Хлеб 39.9; Молоко 62.5; Курица 184.0; Конфеты 89.9")
+}
+
+fun mostExpensive(description: String): String {
+    if (description == "") {
+        return ""
+    } else {
+        var separateItem = description.split("; ").map { it.split(" ") }
+        var itenPrice = separateItem.maxByOrNull { it[1].toDouble() }.toString()
+        itenPrice = itenPrice.filterNot { it == "[".get(0) }
+        itenPrice = itenPrice.filterNot { it == "]".get(0) }
+        var c = itenPrice.split(",")
+        return c[0]
+    }
+
+}
 
 /**
  * Сложная (6 баллов)
