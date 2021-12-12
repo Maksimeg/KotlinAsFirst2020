@@ -191,7 +191,7 @@ fun mostExpensive(description: String): String {
         var c = itenPrice.split(",")
         return c[0]
     } catch (e: Exception) {
-        return ""
+        return "Any good with price 0.0"
     }
 }
 
