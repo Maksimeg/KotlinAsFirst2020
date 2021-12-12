@@ -184,15 +184,24 @@ fun main() {
 
 fun mostExpensive(description: String): String {
     try {
-        var separateItem = description.split("; ").map { it.split(" ") }
-        var itenPrice = separateItem.maxByOrNull { it[1].toDouble() }.toString()
-        itenPrice = itenPrice.filterNot { it == "[".get(0) }
-        itenPrice = itenPrice.filterNot { it == "]".get(0) }
-        var c = itenPrice.split(",")
-        return c[0]
+        var separateItem=description.split("; ")
+        var maxCost=0.0
+        var ans=""
+        for(i in separateItem.indices){
+            var itemAndPrice=separateItem[i].split(" ")
+            var Price=itemAndPrice[1].toDouble()
+            if(Price>maxCost){
+                maxCost=Price
+                ans=itemAndPrice[0]
+            }
+        }
+        return ans
+
+
     } catch (e: Exception) {
-        return "Any good with price 0.0"
+        return ""
     }
+
 }
 
 
