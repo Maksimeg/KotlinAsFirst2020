@@ -77,19 +77,12 @@ fun deleteMarked(inputName: String, outputName: String) {
  */
 fun main() {
     var s = "aaasdsds asds ssd"
-    var c = 0
-    for (line in s) {
 
-    }
-    if (s.contains("a")) {
-        c += 1
-    }
-    println(c)
 }
 
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
     val inputFile = File(inputName)
-    val newListSubstrings=substrings.toSet()
+    val newListSubstrings = substrings.toSet()
     val map = mutableMapOf<String, Int>()
     for (str in newListSubstrings) map[str] = 0
     for (line in inputFile.readLines()) {
@@ -196,7 +189,30 @@ fun alignFileByWidth(inputName: String, outputName: String) {
  * Ключи в ассоциативном массиве должны быть в нижнем регистре.
  *
  */
-fun top20Words(inputName: String): Map<String, Int> = TODO()
+fun top20Words(inputName: String): Map<String, Int> {
+    val wordsCount = mutableMapOf<String, Int>()
+    val txt = File(inputName).readText()
+    val regex = "[^a-zа-яё]".toRegex()
+    val textFormat = regex.replace(txt.lowercase(), " ")
+    val endSingleText = textFormat.split(' ').filter { it.isNotEmpty() }
+
+    for (word in endSingleText) {
+        val count = wordsCount[word]
+        if (count == null) wordsCount[word] = 1
+        else wordsCount[word] = count + 1
+    }
+    val sortedWordCount = wordsCount.toList().sortedByDescending { it.second }
+    var endWord = sortedWordCount.take(20).toMutableList()
+    if (sortedWordCount.size > 20) {
+        val lastWord = endWord.last().second
+        for (index in 20..sortedWordCount.size-1) {
+            val word = sortedWordCount[index]
+            if (lastWord != word.second) break
+            endWord.add(word)
+        }
+    }
+    return endWord.toMap()
+}
 
 /**
  * Средняя (14 баллов)
