@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import java.lang.Exception
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -181,18 +183,18 @@ fun main() {
 }
 
 fun mostExpensive(description: String): String {
-    if (description == "") {
-        return ""
-    } else {
+    try {
         var separateItem = description.split("; ").map { it.split(" ") }
         var itenPrice = separateItem.maxByOrNull { it[1].toDouble() }.toString()
         itenPrice = itenPrice.filterNot { it == "[".get(0) }
         itenPrice = itenPrice.filterNot { it == "]".get(0) }
         var c = itenPrice.split(",")
         return c[0]
+    } catch (e: Exception) {
+        return ""
     }
-
 }
+
 
 /**
  * Сложная (6 баллов)
