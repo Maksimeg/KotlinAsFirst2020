@@ -152,24 +152,17 @@ fun plusMinus(expression: String): Int = TODO()
 
 fun firstDuplicateIndex(str: String): Int {
     val allWords = str.split(" ")
-    val sizeAllWords = allWords.size
     var sizeWords = 0
     var ans = 0
 
-    for (i in 0..sizeAllWords - 2) {
-        sizeWords += allWords[i].length
-        if (allWords[i].equals(allWords[i + 1], ignoreCase = true)) {
-            ans = sizeWords + i - allWords[i].length
+    for (i in 1..allWords.lastIndex) {
+        sizeWords += allWords[i - 1].length
+        if (allWords[i - 1].equals(allWords[i], ignoreCase = true)) {
+            ans = sizeWords + i - allWords[i - 1].length
             break
         }
-
     }
-    if (ans == 0) {
-        return -1
-    }
-
-    //println(ans)
-    return ans
+    return ans - 1
 }
 
 /**
