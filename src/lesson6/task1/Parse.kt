@@ -190,7 +190,7 @@ fun mostExpensive(description: String): String {
         for (i in separateItem.indices) {
             var itemAndPrice = separateItem[i].split(" ")
             var Price = itemAndPrice[1].toDouble()
-            if (Price > maxCost) {
+            if (Price >= maxCost) {
                 maxCost = Price
                 ans = itemAndPrice[0]
             }
