@@ -4,6 +4,7 @@ package lesson3.task1
 
 import kotlin.math.sqrt
 import kotlin.math.pow
+import lesson1.task1.discriminant
 
 
 // Урок 3: циклы
@@ -233,21 +234,16 @@ fun squareSequenceDigit(n: Int): Int {
         count += 1
         var number = count * count
         endNumber = number
-        if (number < 10) {
-            realCount += 1
-        } else {
-            while (number > 0) {
-                realCount += 1
-                number /= 10
-            }
-        }
+        val pair = realyCount(number, realCount)
+        number = pair.first
+        realCount = pair.second
     }
-    return EndCount(realCount, n, endNumber)
+    return endCount(realCount, n, endNumber)
 
 
 }
 
-private fun EndCount(realCount: Int, n: Int, endNumber: Int): Int {
+private fun endCount(realCount: Int, n: Int, endNumber: Int): Int {
     var endNumber1 = endNumber
     return if (realCount == n) {
         endNumber1 % 10
@@ -276,17 +272,26 @@ fun fibSequenceDigit(n: Int): Int {
         count += 1
         var number = fib(count)
         endNumber = number
-        if (number < 10) {
-            realCount += 1
-        } else {
-            while (number > 0) {
-                realCount += 1
-                number /= 10
-            }
+        val pair = realyCount(number, realCount)
+        number = pair.first
+        realCount = pair.second
+    }
+    return endCount(realCount, n, endNumber)
+
+}
+
+private fun realyCount(number: Int, realCount: Int): Pair<Int, Int> {
+    var number1 = number
+    var realCount1 = realCount
+    if (number1 < 10) {
+        realCount1 += 1
+    } else {
+        while (number1 > 0) {
+            realCount1 += 1
+            number1 /= 10
         }
     }
-    return EndCount(realCount, n, endNumber)
-
+    return Pair(number1, realCount1)
 }
 
 

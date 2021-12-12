@@ -242,65 +242,18 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
 fun roman(n: Int): String {
-    val firstC = listOf<String>(
-        "",
-        "C",
-        "CC",
-        "CCC",
-        "CD",
-        "D",
-        "DC",
-        "DCC",
-        "DCCC",
-        "CM"
-    )
-    val secondC = listOf<String>(
-
-        "",
-        "X",
-        "XX",
-        "XXX",
-        "XL",
-        "L",
-        "LX",
-        "LXX",
-        "LXXX",
-        "XC",
-    )
-    val SecondCDes = listOf<String>(
-        "",
-        "XI",
-        "XII",
-        "XIII",
-        "XIV",
-        "XV",
-        "XVI",
-        "XVII",
-        "XVIII",
-        "XIX",
-    )
-    val ThirdC = listOf<String>(
-        "",
-        "I",
-        "II",
-        "III",
-        "IV",
-        "V",
-        "VI",
-        "VII",
-        "VIII",
-        "IX",
-    )
-    val thouC = listOf<String>("", "M", "MM", "MMM")
-
-    var res = ""
-    val onePart = n / 100
-    val twoPart = n % 100
-
-    res = (if (onePart > 9) thouC[onePart / 10] else "") + firstC[onePart % 10] + if (twoPart < 20 && twoPart > 10)
-        SecondCDes[twoPart % 10] else secondC[twoPart / 10] + ThirdC[twoPart % 10]
-
-    return res.trim()
+    var count = n
+    val arabian = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    val romain = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+    val answer = buildString {
+        for (i in 0..arabian.size - 1) {
+            for (k in 0 until count / arabian[i]) {
+                count %= arabian[i]
+                append(romain[i])
+            }
+        }
+    }
+    return answer
 }
 
 /**
@@ -310,12 +263,9 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun main() {
-    println(roman(1514))
-}
 
 fun russian(n: Int): String {
-    val firstC = listOf<String>(
+    val firstHundred = listOf<String>(
         "",
         "сто ",
         "двести ",
@@ -327,7 +277,7 @@ fun russian(n: Int): String {
         "восемьсот ",
         "девятьсот ",
     )
-    val secondC = listOf<String>(
+    val secondHundred = listOf<String>(
 
         "",
         "десять ",
@@ -340,7 +290,7 @@ fun russian(n: Int): String {
         "восемьдесят ",
         "девяносто ",
     )
-    val SecondCDes = listOf<String>(
+    val secondDozens = listOf<String>(
         "",
         "одиннадцать ",
         "двенадцать ",
@@ -352,7 +302,7 @@ fun russian(n: Int): String {
         "восемнадцать ",
         "девятнадцать ",
     )
-    val ThirdC = listOf<String>(
+    val easyCount = listOf<String>(
         "",
         "один ",
         "два ",
@@ -369,17 +319,17 @@ fun russian(n: Int): String {
     val thousandsCount = n / 1000
     val hundredsCount = n % 1000
 
-    result = firstC[thousandsCount / 100] + (if (thousandsCount % 100 / 10 == 1 && thousandsCount % 100 != 10)
-        SecondCDes[thousandsCount % 10] else secondC[thousandsCount % 100 / 10] + when (thousandsCount % 10) {
+    result = firstHundred[thousandsCount / 100] + (if (thousandsCount % 100 / 10 == 1 && thousandsCount % 100 != 10)
+        secondDozens[thousandsCount % 10] else secondHundred[thousandsCount % 100 / 10] + when (thousandsCount % 10) {
         0 -> ""
         1 -> "одна "
         2 -> "две "
-        else -> ThirdC[thousandsCount % 10]
+        else -> easyCount[thousandsCount % 10]
     }) + (if (thousandsCount != 0) if (thousandsCount % 100 in 5..20) "тысяч " else when (thousandsCount % 10) {
         1 -> "тысяча "
         2, 3, 4 -> "тысячи "
         else -> "тысяч "
-    } else "") + firstC[hundredsCount / 100] + (if (hundredsCount % 100 / 10 == 1 && hundredsCount % 100 != 10)
-        SecondCDes[hundredsCount % 10] else secondC[hundredsCount % 100 / 10] + ThirdC[hundredsCount % 10])
+    } else "") + firstHundred[hundredsCount / 100] + (if (hundredsCount % 100 / 10 == 1 && hundredsCount % 100 != 10)
+        secondDozens[hundredsCount % 10] else secondHundred[hundredsCount % 100 / 10] + easyCount[hundredsCount % 10])
     return result.trim()
 }

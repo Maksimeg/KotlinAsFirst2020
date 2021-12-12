@@ -2,7 +2,6 @@
 
 package lesson5.task1
 
-import javax.print.attribute.SetOfIntegerSyntax
 import kotlin.math.max
 import kotlin.math.min
 
@@ -313,64 +312,44 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
  *     450
  *   ) -> emptySet()
  */
-fun main() {
-    // bagPacking(mapOf("0" to (2 to 1), "1" to (1 to 1)), 1)
-    bagPacking(mapOf("0" to (1 to 1), "1" to (1 to 1), "2" to (1 to 2), "3" to (2 to 2)), 2)
-    //bagPacking(mapOf("BOOK" to (4 to 200), "SLEEK" to (2 to 200), "argo" to (2 to 100)), 4)
-}
 
 fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<String> {
     val n = treasures.size
     val backpack: Array<IntArray> = Array(n) { IntArray(capacity + 1) { 0 } }
     val str: Array<Array<String>> = Array(n, { Array(capacity + 1, { " " }) })
     val name = treasures.keys.toMutableList()
-    val param = treasures.values.toMutableList()
+    val parameter = treasures.values.toMutableList()
     if (treasures.isEmpty() || n == 0) return setOf()
-    var count=0
+    var count = 0
     for (i in 0..n - 1) {
-        if (capacity >= param[i].first) count+=1
+        if (capacity >= parameter[i].first) count += 1
+        break
     }
-    if (count==0) return setOf()
-
-
+    if (count == 0) return setOf()
 
     for (i in 0..n - 1) {
+        val weight = parameter[i].first
+        val price = parameter[i].second
         for (s in 0..capacity) {
             if (i == 0) {
-                if (s >= param[i].first) {
-                    backpack[i][s] = param[i].second
+                if (s >= weight) {
+                    backpack[i][s] = price
                     str[i][s] = name[0]
                 }
                 continue
             }
             backpack[i][s] = backpack[i - 1][s]
             str[i][s] = str[i - 1][s]
-            if (s >= param[i].first) {
-                //backpack[i][s] = max(backpack[i][s], backpack[i - 1][s - param[i].first] + param[i].second)
-                if (backpack[i - 1][s - param[i].first] + param[i].second > backpack[i][s]) {
-                    str[i][s] = str[i - 1][s - param[i].first] + " " + name[i]
-                    backpack[i][s] = max(backpack[i][s], backpack[i - 1][s - param[i].first] + param[i].second)
+            if (s >= weight) {
+                if (backpack[i - 1][s - weight] + price > backpack[i][s]) {
+                    str[i][s] = str[i - 1][s - weight] + " " + name[i]
+                    backpack[i][s] = max(backpack[i][s], backpack[i - 1][s - weight] + price)
                 }
             }
         }
     }
 
-   /* println("")
-    for(i in 0..n-1){
-        for (j in 0..capacity){
-            print(str[i][j])
-        }
-        println("")
-    }*/
-
-   // println(str[n-1][capacity])
-    //println("f")
-    //println(backpack[n-1][capacity])
-    val re = mutableSetOf<String>()
-    re += str[n - 1][capacity].split(" ")
-    //re.plus("ddas")
-    //println(re)
-    //if(re.isEmpty()) println("ff")
-    //if(str[n-1][capacity].isEmpty()) println("ff")
-    return re
+    val result = mutableSetOf<String>()
+    result += str[n - 1][capacity].split(" ")
+    return result
 }

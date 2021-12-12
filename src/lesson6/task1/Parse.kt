@@ -47,7 +47,7 @@ fun timeSecondsToStr(seconds: Int): String {
 /**
  * Пример: консольный ввод
  */
-fun main() {
+/*fun main() {
     println("Введите время в формате ЧЧ:ММ:СС")
     val line = readLine()
     if (line != null) {
@@ -60,7 +60,7 @@ fun main() {
     } else {
         println("Достигнут <конец файла> в процессе чтения строки. Программа прервана")
     }
-}
+}*/
 
 
 /**
@@ -149,7 +149,28 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+
+fun firstDuplicateIndex(str: String): Int {
+    val allWords = str.split(" ")
+    val sizeAllWords = allWords.size
+    var sizeWords = 0
+    var ans = 0
+
+    for (i in 0..sizeAllWords - 2) {
+        sizeWords += allWords[i].length
+        if (allWords[i].equals(allWords[i + 1], ignoreCase = true)) {
+            ans = sizeWords + i - allWords[i].length
+            break
+        }
+
+    }
+    if (ans == 0) {
+        return -1
+    }
+
+    //println(ans)
+    return ans
+}
 
 /**
  * Сложная (6 баллов)

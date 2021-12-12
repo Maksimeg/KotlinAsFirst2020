@@ -76,7 +76,6 @@ fun ageDescription(age: Int): String =
         age % 10 == 4 && age % 100 != 14 || age % 10 == 3 && age % 100 != 13 ||
                 age % 10 == 2 && age % 100 != 12 -> "$age года"
         else -> "$age лет"
-
     }
 
 
@@ -138,8 +137,8 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
     val avgN = a + b + c - minN - maxN
 
     return if (maxN >= minN + avgN) -1 else when {
-        maxN * maxN < minN * minN + avgN * avgN -> return 0
-        maxN * maxN == minN * minN + avgN * avgN -> return 1
+        maxN * maxN < minN * minN + avgN * avgN -> 0
+        maxN * maxN == minN * minN + avgN * avgN -> 1
         else -> 2
     }
 
