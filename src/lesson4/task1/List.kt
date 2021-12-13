@@ -266,7 +266,7 @@ fun roman(n: Int): String {
 
 fun russian(n: Int): String {
     val firstHundred = listOf<String>(
-        "",
+        "",//это нужно для удобного обращения к последующим цифрам
         "сто ",
         "двести ",
         "триста ",

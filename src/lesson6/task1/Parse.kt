@@ -164,7 +164,8 @@ fun firstDuplicateIndex(str: String): Int {
             break
         }
     }
-    return ans - 1
+    ans-=1
+    return ans
 }
 
 /**
