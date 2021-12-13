@@ -322,8 +322,10 @@ fun bagPacking(treasures: Map<String, Pair<Int, Int>>, capacity: Int): Set<Strin
     if (treasures.isEmpty() || n == 0) return setOf()
     var count = 0
     for (i in 0..n - 1) {
-        if (capacity >= parameter[i].first) count += 1
-        //break
+        if (capacity >= parameter[i].first) {
+            count += 1
+            break
+        }
     }
     if (count == 0) return setOf()
 
