@@ -82,11 +82,11 @@ fun main() {
 
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
     val inputFile = File(inputName)
-    val newListSubstrings = substrings.toSet()
+    var newListSubstrings = substrings.toSet()
     val map = mutableMapOf<String, Int>()
     for (str in newListSubstrings) map[str] = 0
     for (line in inputFile.readLines()) {
-        for (str in substrings) {
+        for (str in newListSubstrings) {
             var searchIndex = 0
             var index = line.indexOf(str, searchIndex, true)
             while (index != -1) {
@@ -194,7 +194,7 @@ fun top20Words(inputName: String): Map<String, Int> {
     val txt = File(inputName).readText()
     val regex = "[^a-zа-яё]".toRegex()
     val textFormat = regex.replace(txt.lowercase(), " ")
-    val endSingleText = textFormat.split(' ').filter { it.isNotEmpty() }
+    val endSingleText = textFormat.split(" ").filter { it.isNotEmpty() }
 
     for (word in endSingleText) {
         val count = wordsCount[word]
