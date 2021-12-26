@@ -62,7 +62,7 @@ class Complex(val re: Double, val im: Double) {
 }
 
 fun main() {
-    println(game("input/game.txt", true))
+    println(game("input/game2.txt", false))
 }
 
 fun game(inputName: String, xOr0: Boolean): String? {
@@ -92,10 +92,10 @@ fun game(inputName: String, xOr0: Boolean): String? {
     var countOfXInStr = 0
 
     //проверка строк
-    for (str in 0..14) {
+    for (strOrStlb in 0..14) {
         for (i in 0..14) {
             for (j in i..13) {
-                if (field[str][j + 1] == kindOfSimbol) {
+                if (field[strOrStlb][j + 1] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 13) {
                         provMassRightStr[i] = countOfXInStr
@@ -111,7 +111,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
         }
         for (i in 14 downTo 1) {
             for (j in i downTo 1) {
-                if (field[str][j - 1] == kindOfSimbol) {
+                if (field[strOrStlb][j - 1] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 1) {
                         provMassRightStr[i] = countOfXInStr
@@ -126,17 +126,16 @@ fun game(inputName: String, xOr0: Boolean): String? {
             }
         }
         for (j in 0..14) {
-            if (field[str][j] == '-' && provMassRightStr[j] + provMassLeftStr[j] > 3) {
-                return ((str + 1).toString() + " " + (j + 1).toString())
+            if (field[strOrStlb][j] == '-' && provMassRightStr[j] + provMassLeftStr[j] > 3) {
+                return ((strOrStlb + 1).toString() + " " + (j + 1).toString())
             }
         }
-    }
-    //проверка столбиков
-    for (stolb in 0..14) {
+
+        //проверка столбиков
         countOfXInStr = 0
         for (i in 0..14) {
             for (j in i..13) {
-                if (field[j + 1][stolb] == kindOfSimbol) {
+                if (field[j + 1][strOrStlb] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 13) {
                         provMassRightStr[i] = countOfXInStr
@@ -152,7 +151,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
         }
         for (i in 14 downTo 1) {
             for (j in i downTo 1) {
-                if (field[j - 1][stolb] == kindOfSimbol) {
+                if (field[j - 1][strOrStlb] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 1) {
                         provMassRightStr[i] = countOfXInStr
@@ -167,15 +166,15 @@ fun game(inputName: String, xOr0: Boolean): String? {
             }
         }
         for (j in 0..14) {
-            if (field[j][stolb] == '-' && provMassRightStr[j] + provMassLeftStr[j] > 3) {
-                return ((j + 1).toString() + " " + (stolb + 1).toString())
+            if (field[j][strOrStlb] == '-' && provMassRightStr[j] + provMassLeftStr[j] > 3) {
+                return ((j + 1).toString() + " " + (strOrStlb + 1).toString())
             }
         }
     }
 
 //проверка диагоналей
     countOfXInStr = 0
-     var str = 0
+    var str = 0
     for (k in 0..10) {
         for (i in 0..(14 - k)) {
             str = i
@@ -276,7 +275,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
             element += 1
         }
     }
-     str = 0
+
     var count = 0
     countOfXInStr = 0
     for (k in 0..10) {
@@ -284,7 +283,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
         for (i in 14 downTo 1) {
             str = i
             for (j in count..13 - k) {
-                if (field[str - 1][j + 1 + k] == 'x') {
+                if (field[str - 1][j + 1 + k] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 13 - k) {
                         provMassRightStr[count] = countOfXInStr
@@ -306,7 +305,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
         for (i in 0..13 - k) {
             str = i
             for (j in count downTo 1) {
-                if (field[str + 1 + k][j - 1] == 'x') {
+                if (field[str + 1 + k][j - 1] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 1 + k) {
                         provMassLeftStr[count - k] = countOfXInStr
@@ -334,13 +333,13 @@ fun game(inputName: String, xOr0: Boolean): String? {
         }
     }
 
-    count = 0
+
     for (k in 1..10) {
         count = 0
         for (i in 14 downTo 1) {
             str = i
             for (j in count..13 - k) {
-                if (field[str - 1 - k][j + 1] == 'x') {
+                if (field[str - 1 - k][j + 1] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 13 - k) {
                         provMassRightStr[count] = countOfXInStr
@@ -361,7 +360,7 @@ fun game(inputName: String, xOr0: Boolean): String? {
         for (i in 0..13 - k) {
             str = i
             for (j in count downTo 1) {
-                if (field[str + 1][j - 1 - k] == 'x') {
+                if (field[str + 1][j - 1 - k] == kindOfSimbol) {
                     countOfXInStr += 1
                     if (j == 1 + k) {
                         provMassLeftStr[count - k] = countOfXInStr

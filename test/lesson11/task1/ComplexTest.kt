@@ -48,4 +48,12 @@ internal class ComplexTest {
         assertApproxEquals(Complex(1.0, 2.0), Complex("1+2i"), 1e-12)
         assertApproxEquals(Complex(1.0, 0.0), Complex(1.0), 1e-12)
     }
+
+    @Test
+    @Tag("additionalTask")
+    fun game() {
+        assertEquals("2 5", game("input/game.txt", true))
+        assertEquals("7 4", game("input/game2.txt", false))
+        assertEquals(null, game("input/game3.txt", false))
+    }
 }
