@@ -388,19 +388,5 @@ fun game(inputName: String, xOr0: Boolean): String? {
             count += 1
         }
     }
-
-
-    /*for (i in 0..14) {
-        print(provMassRightStr[i])
-    }
-    println()*/
-
-    /*for (i in 0..14) {
-        for (j in 0..14) {
-            print(field[i][j])
-        }
-        println()
-    }*/
-
     return null
 }
